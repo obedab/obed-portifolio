@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  /* Light Mode Colors */
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%; /* Professional Blue */
+  --card: 0 0% 98%;
+  --border: 214.3 31.8% 91.4%;
+}
+
+.dark {
+  /* Dark Mode Colors */
+  --background: 222.2 84% 4.9%; /* Deep Navy/Black */
+  --foreground: 210 40% 98%;
+  --primary: 217.2 91.2% 59.8%; 
+  --card: 217.2 32.6% 17.5%;
+  --border: 217.2 32.6% 17.5%;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: 'Inter', sans-serif; /* Standard professional font */
+}
