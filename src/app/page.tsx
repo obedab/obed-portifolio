@@ -1,14 +1,10 @@
-
 export default function Home() {
   return (
-    <div
-      className="min-h-screen bg-cover bg-center"
-      style={{ backgroundImage: 'url(/bg-image.png)' }}
-    >
-      <h1 className="text-white text-4xl font-bold text-center pt-40">
-       Successfully setup of my project!
-      </h1>
+    <div className="flex flex-col">
+      <section className="h-screen flex items-center justify-center">
+        <h1 className="text-5xl font-bold">Building Greatness.</h1>
+      </section>
+      {/* Other sections will go here */}
     </div>
   );
 }
-
