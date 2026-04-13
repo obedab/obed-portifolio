@@ -12,34 +12,34 @@ import {
   Typography,
 } from "@mui/material";
 import {
-  Home,
-  User,
-  Lightbulb,
-  Briefcase,
-  MessageSquare,
-  Sun,
-  ChevronUp,
-  ChevronDown,
-  Grid,
-  Award,
-  Trophy,
-  MapPin,
-  UserPlus,
-} from "lucide-react";
+  Home as HomeIcon,
+  Person as PersonIcon,
+  Lightbulb as LightbulbIcon,
+  Work as WorkIcon,
+  Send as SendIcon,
+  WbSunny as WbSunnyIcon,
+  ExpandLess as ExpandLessIcon,
+  ExpandMore as ExpandMoreIcon,
+  GridView as GridViewIcon,
+  EmojiEvents as EmojiEventsIcon,
+  Star as StarsIcon,
+  LocationOn as LocationOnIcon,
+  PersonAdd as PersonAddIcon,
+} from "@mui/icons-material";
 
 const navItems = [
-  { name: "Home", href: "#home", icon: <Home size={16} /> },
-  { name: "About", href: "#about", icon: <User size={16} /> },
-  { name: "Skills", href: "#skills", icon: <Lightbulb size={16} /> },
-  { name: "Experience", href: "#experience", icon: <Briefcase size={16} /> },
+  { name: "Home", href: "#home", icon: <HomeIcon fontSize="small" /> },
+  { name: "About", href: "#about", icon: <PersonIcon fontSize="small" /> },
+  { name: "Skills", href: "#skills", icon: <LightbulbIcon fontSize="small" /> },
+  { name: "Experience", href: "#experience", icon: <WorkIcon fontSize="small" /> },
 ];
 
 const dropdownItems = [
-  { name: "Projects", icon: <Grid size={16} /> },
-  { name: "Certifications", icon: <Award size={16} /> },
-  { name: "Achievements", icon: <Trophy size={16} /> },
-  { name: "Location", icon: <MapPin size={16} /> },
-  { name: "Connect", icon: <UserPlus size={16} /> },
+  { name: "Projects", icon: <GridViewIcon fontSize="small" /> },
+  { name: "Certifications", icon: <EmojiEventsIcon fontSize="small" /> },
+  { name: "Achievements", icon: <StarsIcon fontSize="small" /> },
+  { name: "Location", icon: <LocationOnIcon fontSize="small" /> },
+  { name: "Connect", icon: <PersonAddIcon fontSize="small" /> },
 ];
 
 export default function Navbar() {
@@ -59,86 +59,90 @@ export default function Navbar() {
       sx={{
         backgroundColor: "rgba(5, 10, 18, 0.92)",
         backdropFilter: "blur(30px)",
-        border: "1px solid rgba(255,255,255,0.12)",
-        boxShadow: "0 0 60px rgba(0,242,255,0.08)",
-        top: 24,
-        mx: "auto",
+        border: "none",
+        boxShadow: "none",
+        top: 0,
         left: 0,
         right: 0,
-        width: "calc(100% - 32px)",
-        maxWidth: "1400px",
-        borderRadius: "36px",
+        width: "100%",
       }}
     >
       <Toolbar
         sx={{
-          px: { xs: 2, md: 4 },
-          py: 1.5,
+          px: { xs: 2, md: 6 },
+          py: 2,
           display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          gap: 2,
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 4,
+          maxWidth: "1200px",
+          mx: "auto",
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        {/* Logo */}
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, minWidth: "fit-content" }}>
           <Box
             sx={{
-              width: 40,
-              height: 40,
+              width: 44,
+              height: 44,
               borderRadius: "50%",
-              border: "1px solid rgba(255,255,255,0.12)",
-              bgcolor: "rgba(255,255,255,0.06)",
+              border: "2px solid rgba(110, 241, 255, 0.3)",
+              bgcolor: "rgba(0, 242, 255, 0.08)",
               color: "#6ef1ff",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontWeight: 700,
-              boxShadow: "0 0 20px rgba(0,242,255,0.1)",
+              fontWeight: 800,
+              fontSize: "20px",
+              boxShadow: "0 0 15px rgba(0,242,255,0.15)",
             }}
           >
-            O
+            J
           </Box>
-          <Typography variant="button" sx={{ color: "rgba(255,255,255,0.85)", letterSpacing: "0.18em" }}>
-            <Box component="span" sx={{ fontWeight: 900, color: "#c8ffff", mr: 1}}>
-              Obed ABIRAGIYE
+          <Typography sx={{ color: "rgba(255,255,255,0.9)", fontSize: "14px", fontWeight: 600, whiteSpace: "nowrap" }}>
+            <Box component="span" sx={{ color: "#6ef1ff", fontWeight: 800 }}>
+              Jerophin D R
             </Box>
-            | Portfolio
+            {" | Portfolio"}
           </Typography>
         </Box>
 
-        <Stack direction="row" alignItems="center" spacing={1} sx={{ flexWrap: "wrap", justifyContent: "center" }}>
+        {/* Nav Items + Dropdown */}
+        <Stack direction="row" alignItems="center" spacing={0} sx={{ flex: 1, justifyContent: "center" }}>
           <Box
             sx={{
               display: "flex",
-              flexWrap: "wrap",
-              gap: 1,
-              p: "4px 8px",
+              gap: 0.75,
+              p: "10px 18px",
               borderRadius: "999px",
-              border: "1px solid rgba(255,255,255,0.08)",
-              bgcolor: "rgba(255,255,255,0.03)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              bgcolor: "rgba(255,255,255,0.05)",
+              maxWidth: "760px",
+              justifyContent: "center",
             }}
           >
-            {navItems.map((item, idx) => (
+            {navItems.map((item) => (
               <Button
                 key={item.name}
                 href={item.href}
                 startIcon={item.icon}
                 sx={{
-                  minWidth: 0,
-                  px: 2,
-                  py: 1,
-                  color: idx === 0 ? "#8ef0ff" : "rgba(255,255,255,0.72)",
-                  bgcolor: idx === 0 ? "rgba(0,242,255,0.1)" : "transparent",
+                  px: 2.5,
+                  py: 1.2,
+                  color: item.href === "#home" ? "#6ef1ff" : "rgba(255,255,255,0.28)",
+                  bgcolor: item.href === "#home" ? "rgba(0,242,255,0.12)" : "transparent",
                   borderRadius: "999px",
                   textTransform: "uppercase",
-                  letterSpacing: "0.18em",
-                  fontSize: "11px",
-                  fontWeight: 900,
-                  border: idx === 0 ? "1px solid rgba(0,242,255,0.2)" : "none",
-                  boxShadow: idx === 0 ? "0 0 20px rgba(0,242,255,0.12)" : "none",
+                  letterSpacing: "0.16em",
+                  fontSize: "13px",
+                  fontWeight: 700,
+                  border: item.href === "#home" ? "1px solid rgba(0,242,255,0.3)" : "none",
+                  boxShadow: item.href === "#home" ? "0 0 12px rgba(0,242,255,0.2)" : "none",
+                  transition: "all 0.25s ease",
                   "&:hover": {
-                    bgcolor: idx === 0 ? "rgba(0,242,255,0.14)" : "rgba(255,255,255,0.08)",
-                    color: "#fff",
+                    bgcolor: "rgba(139, 92, 246, 0.2)",
+                    borderColor: "rgba(139, 92, 246, 0.35)",
+                    color: "#a78bfa",
                   },
                 }}
               >
@@ -148,20 +152,22 @@ export default function Navbar() {
           </Box>
 
           <IconButton
-            aria-controls={isMenuOpen ? "more-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={isMenuOpen ? "true" : undefined}
             onClick={handleToggleMenu}
             sx={{
-              width: 48,
-              height: 48,
+              ml: 1,
+              width: 44,
+              height: 44,
               borderRadius: "50%",
-              border: "1px solid rgba(255,255,255,0.12)",
+              border: "1px solid rgba(255,255,255,0.1)",
               bgcolor: "rgba(255,255,255,0.05)",
               color: "#fff",
+              transition: "all 0.25s ease",
+              "&:hover": {
+                bgcolor: "rgba(139, 92, 246, 0.2)",
+              },
             }}
           >
-            {isMenuOpen ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+            {isMenuOpen ? <ExpandMoreIcon sx={{ fontSize: 24 }} /> : <ExpandLessIcon sx={{ fontSize: 24 }} />}
           </IconButton>
 
           <Menu
@@ -169,32 +175,41 @@ export default function Navbar() {
             anchorEl={anchorEl}
             open={isMenuOpen}
             onClose={handleCloseMenu}
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-            transformOrigin={{ vertical: "top", horizontal: "right" }}
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            transformOrigin={{ vertical: "top", horizontal: "center" }}
             PaperProps={{
               sx: {
-                bgcolor: "rgba(10,12,18,0.95)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                boxShadow: "0 20px 60px rgba(0,0,0,0.45)",
-                backdropFilter: "blur(20px)",
+                bgcolor: "rgba(10,12,18,0.96)",
+                border: "1px solid rgba(255,255,255,0.12)",
+                boxShadow: "0 16px 40px rgba(0,0,0,0.45)",
+                backdropFilter: "blur(22px)",
+                minWidth: "220px",
+                mt: 1,
+                borderRadius: "20px",
+                p: "6px 0",
               },
             }}
           >
-            {dropdownItems.map((item) => (
+            {dropdownItems.map((item, idx) => (
               <MenuItem
                 key={item.name}
                 onClick={handleCloseMenu}
                 sx={{
                   color: "rgba(255,255,255,0.9)",
-                  gap: 1,
-                  py: 1,
-                  px: 2,
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  gap: 1.5,
+                  py: 1.5,
+                  px: 3,
+                  borderBottom: idx !== dropdownItems.length - 1 ? "1px solid rgba(255,255,255,0.08)" : "none",
+                  transition: "all 0.25s ease",
                   "&:hover": {
-                    bgcolor: "rgba(0,242,255,0.08)",
+                    bgcolor: "rgba(139, 92, 246, 0.25)",
+                    color: "#a78bfa",
                   },
                 }}
               >
-                <Box sx={{ display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
+                <Box sx={{ display: "inline-flex", color: "#a78bfa" }}>
                   {item.icon}
                 </Box>
                 {item.name}
@@ -203,23 +218,26 @@ export default function Navbar() {
           </Menu>
         </Stack>
 
-        <Stack direction="row" alignItems="center" spacing={1}>
+        {/* Action Buttons */}
+        <Stack direction="row" alignItems="center" spacing={1} sx={{ minWidth: "fit-content" }}>
           <Button
             variant="outlined"
-            startIcon={<MessageSquare size={16} />}
+            startIcon={<SendIcon sx={{ fontSize: 18 }} />}
             sx={{
-              borderColor: "rgba(255,255,255,0.14)",
-              color: "#fff",
+              borderColor: "rgba(255,255,255,0.15)",
+              color: "rgba(255,255,255,0.9)",
               textTransform: "uppercase",
-              letterSpacing: "0.18em",
+              letterSpacing: "0.12em",
               py: 1,
-              px: 3,
-              fontSize: "11px",
-              fontWeight: 900,
+              px: 2.5,
+              fontSize: "12px",
+              fontWeight: 700,
               borderRadius: "999px",
+              transition: "all 0.25s ease",
               "&:hover": {
-                bgcolor: "rgba(255,255,255,0.1)",
-                borderColor: "rgba(255,255,255,0.18)",
+                bgcolor: "rgba(139, 92, 246, 0.2)",
+                borderColor: "rgba(139, 92, 246, 0.4)",
+                color: "#a78bfa",
               },
             }}
           >
@@ -227,15 +245,19 @@ export default function Navbar() {
           </Button>
           <IconButton
             sx={{
-              width: 48,
-              height: 48,
+              width: 44,
+              height: 44,
               borderRadius: "50%",
-              border: "1px solid rgba(255,255,255,0.12)",
+              border: "1px solid rgba(255,255,255,0.1)",
               bgcolor: "rgba(255,255,255,0.05)",
               color: "#fff",
+              transition: "all 0.25s ease",
+              "&:hover": {
+                bgcolor: "rgba(139, 92, 246, 0.2)",
+              },
             }}
           >
-            <Sun size={18} />
+            <WbSunnyIcon sx={{ fontSize: 22 }} />
           </IconButton>
         </Stack>
       </Toolbar>
