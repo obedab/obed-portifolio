@@ -1,17 +1,6 @@
 "use client";
 import { useState, MouseEvent } from "react";
 import {
-  AppBar,
-  Box,
-  Button,
-  IconButton,
-  Menu,
-  MenuItem,
-  Stack,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import {
   Home as HomeIcon,
   Person as PersonIcon,
   Lightbulb as LightbulbIcon,
@@ -44,6 +33,7 @@ const dropdownItems = [
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMenuOpen = Boolean(anchorEl);
 
   const handleToggleMenu = (event: MouseEvent<HTMLElement>) => {
@@ -52,215 +42,101 @@ export default function Navbar() {
 
   const handleCloseMenu = () => setAnchorEl(null);
 
+  const allItems = [...navItems, ...dropdownItems];
+
   return (
-    <AppBar
-      position="fixed"
-      elevation={0}
-      sx={{
-        backgroundColor: "rgba(5, 10, 18, 0.92)",
-        backdropFilter: "blur(30px)",
-        border: "none",
-        boxShadow: "none",
-        top: 0,
-        left: 0,
-        right: 0,
-        width: "100%",
-      }}
-    >
-      <Toolbar
-        sx={{
-          px: { xs: 2, md: 6 },
-          py: 2,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: 4,
-          maxWidth: "1200px",
-          mx: "auto",
-        }}
-      >
+    <nav className="fixed top-0 left-0 right-0 w-full bg-transparent border-none shadow-none z-50">
+      <div className="px-2 md:px-6 py-2 flex justify-center items-center gap-4 max-w-6xl mx-auto">
         {/* Logo */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, minWidth: "fit-content" }}>
-          <Box
-            sx={{
-              width: 44,
-              height: 44,
-              borderRadius: "50%",
-              border: "2px solid rgba(110, 241, 255, 0.3)",
-              bgcolor: "rgba(0, 242, 255, 0.08)",
-              color: "#6ef1ff",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontWeight: 800,
-              fontSize: "20px",
-              boxShadow: "0 0 15px rgba(0,242,255,0.15)",
-            }}
+        <div className="flex items-center gap-3 min-w-fit">
+          <div className="w-11 h-11 rounded-full border-2 border-cyan-300/30 bg-cyan-500/8 text-cyan-400 flex items-center justify-center font-extrabold text-xl shadow-lg shadow-cyan-500/15">
+            O
+          </div>
+          <span className="text-white/90 text-sm font-semibold whitespace-nowrap">
+            <span className="text-cyan-400 font-extrabold">Obed ABIRAGIYE</span> | Portfolio
+          </span>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden ml-2 w-11 h-11 rounded-full border border-white/10 bg-white/5 text-white transition-all duration-250 hover:bg-purple-500/20"
           >
-            J
-          </Box>
-          <Typography sx={{ color: "rgba(255,255,255,0.9)", fontSize: "14px", fontWeight: 600, whiteSpace: "nowrap" }}>
-            <Box component="span" sx={{ color: "#6ef1ff", fontWeight: 800 }}>
-              Jerophin D R
-            </Box>
-            {" | Portfolio"}
-          </Typography>
-        </Box>
+            {mobileMenuOpen ? <ExpandMoreIcon className="text-2xl" /> : <ExpandLessIcon className="text-2xl" />}
+          </button>
+
+          {mobileMenuOpen && (
+            <div className="md:hidden absolute top-full mt-1 left-0 bg-gray-900/96 border border-white/12 shadow-2xl backdrop-blur-xl min-w-[220px] rounded-2xl p-1.5 z-50">
+              {allItems.map((item, idx) => (
+                <a
+                  key={item.name}
+                  href={item.href || "#"}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center gap-3 text-white/90 text-sm font-semibold py-3 px-3 rounded-lg transition-all duration-250 ${
+                    idx !== allItems.length - 1 ? "border-b border-white/8" : ""
+                  } hover:bg-purple-500/25 hover:text-purple-400`}
+                >
+                  <span className="text-purple-400">{item.icon}</span>
+                  {item.name}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
 
         {/* Nav Items + Dropdown */}
-        <Stack direction="row" alignItems="center" spacing={0} sx={{ flex: 1, justifyContent: "center" }}>
-          <Box
-            sx={{
-              display: "flex",
-              gap: 0.75,
-              p: "10px 18px",
-              borderRadius: "999px",
-              border: "1px solid rgba(255,255,255,0.1)",
-              bgcolor: "rgba(255,255,255,0.05)",
-              maxWidth: "760px",
-              justifyContent: "center",
-            }}
-          >
+        <div className="hidden md:flex items-center gap-0 flex-1 justify-center">
+          <div className="flex gap-2 p-2.5 px-4.5 rounded-full border border-white/10 bg-white/5 max-w-[760px] justify-center">
             {navItems.map((item) => (
-              <Button
+              <a
                 key={item.name}
                 href={item.href}
-                startIcon={item.icon}
-                sx={{
-                  px: 2.5,
-                  py: 1.2,
-                  color: item.href === "#home" ? "#6ef1ff" : "rgba(255,255,255,0.28)",
-                  bgcolor: item.href === "#home" ? "rgba(0,242,255,0.12)" : "transparent",
-                  borderRadius: "999px",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.16em",
-                  fontSize: "13px",
-                  fontWeight: 700,
-                  border: item.href === "#home" ? "1px solid rgba(0,242,255,0.3)" : "none",
-                  boxShadow: item.href === "#home" ? "0 0 12px rgba(0,242,255,0.2)" : "none",
-                  transition: "all 0.25s ease",
-                  "&:hover": {
-                    bgcolor: "rgba(139, 92, 246, 0.2)",
-                    borderColor: "rgba(139, 92, 246, 0.35)",
-                    color: "#a78bfa",
-                  },
-                }}
+                className={`px-2.5 py-1.2 flex items-center gap-1 rounded-full uppercase tracking-widest text-xs font-bold transition-all duration-250 ${
+                  item.href === "#home"
+                    ? "text-cyan-400 bg-cyan-500/12 border border-cyan-300/30 shadow-lg shadow-cyan-500/20"
+                    : "text-white/28 bg-transparent border-none"
+                } hover:bg-purple-500/20 hover:border-purple-400/35 hover:text-purple-400`}
               >
+                {item.icon}
                 {item.name}
-              </Button>
+              </a>
             ))}
-          </Box>
+          </div>
 
-          <IconButton
+          <button
             onClick={handleToggleMenu}
-            sx={{
-              ml: 1,
-              width: 44,
-              height: 44,
-              borderRadius: "50%",
-              border: "1px solid rgba(255,255,255,0.1)",
-              bgcolor: "rgba(255,255,255,0.05)",
-              color: "#fff",
-              transition: "all 0.25s ease",
-              "&:hover": {
-                bgcolor: "rgba(139, 92, 246, 0.2)",
-              },
-            }}
+            className="ml-1 w-11 h-11 rounded-full border border-white/10 bg-white/5 text-white transition-all duration-250 hover:bg-purple-500/20"
           >
-            {isMenuOpen ? <ExpandMoreIcon sx={{ fontSize: 24 }} /> : <ExpandLessIcon sx={{ fontSize: 24 }} />}
-          </IconButton>
+            {isMenuOpen ? <ExpandMoreIcon className="text-2xl" /> : <ExpandLessIcon className="text-2xl" />}
+          </button>
 
-          <Menu
-            id="more-menu"
-            anchorEl={anchorEl}
-            open={isMenuOpen}
-            onClose={handleCloseMenu}
-            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-            transformOrigin={{ vertical: "top", horizontal: "center" }}
-            PaperProps={{
-              sx: {
-                bgcolor: "rgba(10,12,18,0.96)",
-                border: "1px solid rgba(255,255,255,0.12)",
-                boxShadow: "0 16px 40px rgba(0,0,0,0.45)",
-                backdropFilter: "blur(22px)",
-                minWidth: "220px",
-                mt: 1,
-                borderRadius: "20px",
-                p: "6px 0",
-              },
-            }}
-          >
-            {dropdownItems.map((item, idx) => (
-              <MenuItem
-                key={item.name}
-                onClick={handleCloseMenu}
-                sx={{
-                  color: "rgba(255,255,255,0.9)",
-                  fontSize: "13px",
-                  fontWeight: 600,
-                  gap: 1.5,
-                  py: 1.5,
-                  px: 3,
-                  borderBottom: idx !== dropdownItems.length - 1 ? "1px solid rgba(255,255,255,0.08)" : "none",
-                  transition: "all 0.25s ease",
-                  "&:hover": {
-                    bgcolor: "rgba(139, 92, 246, 0.25)",
-                    color: "#a78bfa",
-                  },
-                }}
-              >
-                <Box sx={{ display: "inline-flex", color: "#a78bfa" }}>
-                  {item.icon}
-                </Box>
-                {item.name}
-              </MenuItem>
-            ))}
-          </Menu>
-        </Stack>
+          {isMenuOpen && (
+            <div className="absolute top-full mt-1 bg-gray-900/96 border border-white/12 shadow-2xl backdrop-blur-xl min-w-[220px] rounded-2xl p-1.5 z-50">
+              {dropdownItems.map((item, idx) => (
+                <a
+                  key={item.name}
+                  href="#"
+                  onClick={handleCloseMenu}
+                  className={`flex items-center gap-3 text-white/90 text-sm font-semibold py-3 px-3 rounded-lg transition-all duration-250 ${
+                    idx !== dropdownItems.length - 1 ? "border-b border-white/8" : ""
+                  } hover:bg-purple-500/25 hover:text-purple-400`}
+                >
+                  <span className="text-purple-400">{item.icon}</span>
+                  {item.name}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
 
         {/* Action Buttons */}
-        <Stack direction="row" alignItems="center" spacing={1} sx={{ minWidth: "fit-content" }}>
-          <Button
-            variant="outlined"
-            startIcon={<SendIcon sx={{ fontSize: 18 }} />}
-            sx={{
-              borderColor: "rgba(255,255,255,0.15)",
-              color: "rgba(255,255,255,0.9)",
-              textTransform: "uppercase",
-              letterSpacing: "0.12em",
-              py: 1,
-              px: 2.5,
-              fontSize: "12px",
-              fontWeight: 700,
-              borderRadius: "999px",
-              transition: "all 0.25s ease",
-              "&:hover": {
-                bgcolor: "rgba(139, 92, 246, 0.2)",
-                borderColor: "rgba(139, 92, 246, 0.4)",
-                color: "#a78bfa",
-              },
-            }}
-          >
+        <div className="flex items-center gap-1 min-w-fit">
+          <button className="border border-white/15 text-white/90 uppercase tracking-wider py-1 px-2.5 text-xs font-bold rounded-full transition-all duration-250 hover:bg-purple-500/20 hover:border-purple-400/40 hover:text-purple-400 flex items-center gap-1">
+            <SendIcon className="text-lg" />
             Let&apos;s talk
-          </Button>
-          <IconButton
-            sx={{
-              width: 44,
-              height: 44,
-              borderRadius: "50%",
-              border: "1px solid rgba(255,255,255,0.1)",
-              bgcolor: "rgba(255,255,255,0.05)",
-              color: "#fff",
-              transition: "all 0.25s ease",
-              "&:hover": {
-                bgcolor: "rgba(139, 92, 246, 0.2)",
-              },
-            }}
-          >
-            <WbSunnyIcon sx={{ fontSize: 22 }} />
-          </IconButton>
-        </Stack>
-      </Toolbar>
-    </AppBar>
+          </button>
+          <button className="w-11 h-11 rounded-full border border-white/10 bg-white/5 text-white transition-all duration-250 hover:bg-purple-500/20">
+            <WbSunnyIcon className="text-xl" />
+          </button>
+        </div>
+      </div>
+    </nav>
   );
 }
