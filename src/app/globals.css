@@ -7,6 +7,11 @@
   --primary-cyan: #00f2ff;
 }
 
+.light-mode {
+  --background: #ffffff;
+  color: black;
+}
+
 body {
   background-color: var(--background);
   color: white;
