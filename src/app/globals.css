@@ -4,17 +4,23 @@
 
 :root {
   --background: #030303;
+  --foreground: #ffffff;
   --primary-cyan: #00f2ff;
+  --primary: 196 100% 50%;
+  --card: 220 10% 8%;
+  --border: 220 10% 20%;
 }
 
 .light-mode {
   --background: #ffffff;
-  color: black;
+  --foreground: #000000;
+  --card: 220 10% 98%;
+  --border: 220 10% 90%;
 }
 
 body {
   background-color: var(--background);
-  color: white;
+  color: var(--foreground);
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
 }
@@ -31,8 +37,8 @@ body {
   /* The Cyan Glow Effect */
   .text-neon {
     color: var(--primary-cyan);
-    text-shadow: 0 0 10px rgba(0, 242, 255, 0.8),
-                 0 0 20px rgba(0, 242, 255, 0.4);
+    text-shadow: 0 0 10px rgba(17, 175, 183, 0.8),
+                 0 0 20px rgba(11, 126, 132, 0.4);
   }
 
   .glass-capsule {
