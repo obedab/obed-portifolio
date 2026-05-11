@@ -13,8 +13,8 @@ export default function NavbarLogo({
         O
       </div>
 
-      <span className="text-current opacity-90 text-lg font-black whitespace-nowrap">
-        <span className="text-cyan-500 font-black">
+      <span className="text-current opacity-90 text-lg font-black text-gray-800 whitespace-nowrap">
+        <span className="text-cyan-600 font-black">
           Obed ABIRAGIYE
         </span>{" "}
         | Portfolio

@@ -20,7 +20,7 @@ export default function NavbarLinks({
           onClick={() => onNavClick(item.href)}
           className={`group px-4 py-2 flex items-center gap-2 rounded-full tracking-widest text-sm font-bold transition-all duration-300 border ${
             item.href === activeNav
-              ? "border-cyan-300/30 text-cyan-400 bg-cyan-500/12"
+              ? "border-white-900/80 text-cyan-600 bg-white-500/12"
               : "border-transparent text-current opacity-90"
           }`}
         >
