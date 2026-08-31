@@ -3,25 +3,45 @@
 @tailwind utilities;
 
 :root {
-  /* Light Mode Colors */
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --primary: 221.2 83.2% 53.3%; /* Professional Blue */
-  --card: 0 0% 98%;
-  --border: 214.3 31.8% 91.4%;
+  --background: #030303;
+  --foreground: #ffffff;
+  --primary-cyan: #00f2ff;
+  --primary: 196 100% 50%;
+  --card: 220 10% 8%;
+  --border: 220 10% 20%;
 }
 
-.dark {
-  /* Dark Mode Colors */
-  --background: 222.2 84% 4.9%; /* Deep Navy/Black */
-  --foreground: 210 40% 98%;
-  --primary: 217.2 91.2% 59.8%; 
-  --card: 217.2 32.6% 17.5%;
-  --border: 217.2 32.6% 17.5%;
+.light-mode {
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: 220 10% 98%;
+  --border: 220 10% 90%;
 }
 
 body {
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
-  font-family: 'Inter', sans-serif; /* Standard professional font */
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  /* The Cyber Grid Background */
+  .bg-grid {
+    background-size: 50px 50px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  }
+
+  /* The Cyan Glow Effect */
+  .text-neon {
+    color: var(--primary-cyan);
+    text-shadow: 0 0 10px rgba(17, 175, 183, 0.8),
+                 0 0 20px rgba(11, 126, 132, 0.4);
+  }
+
+  .glass-capsule {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-full;
+  }
 }

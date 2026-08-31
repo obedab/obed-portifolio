@@ -1,0 +1,13 @@
+export { default as HomeIcon } from '@mui/icons-material/Home';
+export { default as PersonIcon } from '@mui/icons-material/Person';
+export { default as LightbulbIcon } from '@mui/icons-material/Lightbulb';
+export { default as WorkIcon } from '@mui/icons-material/Work';
+export { default as SendIcon } from '@mui/icons-material/Send';
+export { default as WbSunnyIcon } from '@mui/icons-material/WbSunny';
+export { default as ExpandLessIcon } from '@mui/icons-material/ExpandLess';
+export { default as ExpandMoreIcon } from '@mui/icons-material/ExpandMore';
+export { default as GridViewIcon } from '@mui/icons-material/GridView';
+export { default as EmojiEventsIcon } from '@mui/icons-material/EmojiEvents';
+export { default as StarsIcon } from '@mui/icons-material/Stars';
+export { default as LocationOnIcon } from '@mui/icons-material/LocationOn';
+export { default as PersonAddIcon } from '@mui/icons-material/PersonAdd';
